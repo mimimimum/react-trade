@@ -1,45 +1,59 @@
 import React from 'react'
-import { Grid} from 'semantic-ui-react'
-import ImageExampleAvatar from './Image.js';
-const GridExampleColumnCount = () => (
-  <Grid columns={3} divided verticalAlign='middle'>
-    <Grid.Row >
+import { Grid, Icon ,Label} from 'semantic-ui-react'
+
+  export default class ConGridExampleColumnCounttent extends React.Component {
+    
+    
+      render() {
+        return(
+  <Grid columns={3}  >
+    <Grid.Row columns={3}  color='black' textAlign='center'>
       <Grid.Column>
-      <ImageExampleAvatar />
+      <Icon  circular inverted color='teal' name='users' size='massive'/><br/>
+      <Label basic color='teal' pointing size='massive'>Please enter a value</Label>
       </Grid.Column>
       <Grid.Column>
-      <ImageExampleAvatar />
+        <Icon circular inverted color='pink' name='users' size='massive'/><br/>
+      <Label basic color='pink' pointing size='massive'>Please enter a value</Label>
       </Grid.Column>
       <Grid.Column>
-      <ImageExampleAvatar />
+        <Icon circular inverted color='grey' name='users' size='massive'/><br/>
+      <Label basic color='grey' pointing size='massive'>Please enter a value</Label>
+      </Grid.Column>
+    </Grid.Row>
+    <Grid.Row columns={3}  color='black' textAlign='center'>
+      <Grid.Column>
+        <Icon circular inverted color='purple' name='users' size='massive'/><br/>
+      <Label basic color='purple' pointing size='massive'>Please enter a value</Label>
+      </Grid.Column>
+      <Grid.Column>
+        <Icon circular inverted color='orange' name='users' size='massive'/><br/>
+      <Label basic color='orange' pointing size='massive'>Please enter a value</Label>
+      </Grid.Column>
+      <Grid.Column>
+        <Icon circular inverted color='green' name='users' size='massive'/><br/>
+      <Label basic color='green' pointing size='massive'>Please enter a value</Label>
       </Grid.Column>
     </Grid.Row>
 
-    <Grid.Row >
+    <Grid.Row columns={3}  color='black' textAlign='center'>
       <Grid.Column>
-      <ImageExampleAvatar />
+        <Icon circular inverted color='yellow' name='users' size='massive'/><br/>
+      <Label basic color='yellow' pointing size='massive'>Please enter a value</Label>
       </Grid.Column>
       <Grid.Column>
-      <ImageExampleAvatar />
+        <Icon circular inverted color='olive' name='users' size='massive'/><br/>
+      <Label basic color='olive' pointing size='massive'>Please enter a value</Label>
       </Grid.Column>
       <Grid.Column>
-      <ImageExampleAvatar />
-      </Grid.Column>
-
-    </Grid.Row>
-
-    <Grid.Row >
-      <Grid.Column>
-      <ImageExampleAvatar />
-      </Grid.Column>
-      <Grid.Column>
-      <ImageExampleAvatar />
-      </Grid.Column>
-      <Grid.Column>
-      <ImageExampleAvatar />
+        <Icon circular inverted color='blue' name='users' size='massive'/><br/>
+      <Label basic color='blue' pointing size='massive'>Please enter a value</Label>
       </Grid.Column>
     </Grid.Row>
   </Grid>
+
 )
 
-export default GridExampleColumnCount
+
+}
+}

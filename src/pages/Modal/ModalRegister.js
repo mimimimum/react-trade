@@ -1,7 +1,7 @@
 import React from 'react'
 import Dropzone from 'react-dropzone'
 import {register} from '../../api'
-import { Button, Modal } from 'semantic-ui-react'
+import { Button, Modal,Form } from 'semantic-ui-react'
 
 
 class ModalRegister extends React.Component {
@@ -11,7 +11,7 @@ class ModalRegister extends React.Component {
     username:'',
     password:'',
     email:'',
-    tel:'',
+    mobile:'',
     open: false
   }
   constructor(props) {
@@ -63,31 +63,35 @@ onSubmit = event => {
               REGISTER
             </Modal.Header>
             <Modal.Actions>
-            <form onSubmit={this.onSubmit}>
-            <table>
-              <tr>
-                <td>
+            <Form onSubmit={this.onSubmit}>
+
                   <Dropzone onDrop={this.onDrop.bind(this)} className='dropzone' activeClassName='active-dropzone' multiple={false}>
                     <div>Drag and drop or click to select a file to upload.</div>
                   </Dropzone>
   
                   {this.state.imageFiles.length > 0 ? <div><div>{this.state.imageFiles.map((file) => <img src={file.preview} /> )}</div></div> : null}
-                </td>
-                <td>
-                  <input type="text" name="firstname" placeholder="firstname" value={this.state.firstname} onChange={this.onTextChange} /><br />
-                  <input type="text" name="lastname" placeholder="lastname" value={this.state.lastname} onChange={this.onTextChange}/><br />
-                  <input type="text" name="username" placeholder="username" value={this.state.username} onChange={this.onTextChange}/><br />
-                  <input type="text" name="password" placeholder="password" value={this.state.password} onChange={this.onTextChange}/><br />
-                  <input type="text" name="email" placeholder="email" value={this.state.email} onChange={this.onTextChange}/><br />
-                  <input type="text" name="tel" placeholder="tel" value={this.state.tel} onChange={this.onTextChange}/><br />
+
+                  <Form.Group widths={2}>
+      <Form.Input label='Username' name="username" placeholder="username" value={this.state.username} onChange={this.onTextChange} />
+      <Form.Input label='Password' name="password" placeholder="password" value={this.state.password} onChange={this.onTextChange} />
+    </Form.Group>
+    <Form.Group  widths={2}>
+      <Form.Input label='First name' type="text" name="firstname" placeholder="firstname" value={this.state.firstname} onChange={this.onTextChange}/>
+      <Form.Input label='Last name' name="lastname" placeholder="lastname" value={this.state.lastname} onChange={this.onTextChange} />
+    </Form.Group>
+    <Form.Group >
+      <Form.Input label='Address' name="address" placeholder="address" value={this.state.address} onChange={this.onTextChange} width={16}  />
+    </Form.Group>
+    <Form.Group widths={2}>
+      <Form.Input label='E-mail' name="email" placeholder="e-mail" value={this.state.email} onChange={this.onTextChange} />
+      <Form.Input label='Mobile' name="mobile" placeholder="mobile" value={this.state.mobile} onChange={this.onTextChange} />
+    </Form.Group>
+    
+    <Form.Checkbox label='I agree to the Terms and Conditions' />
+    <Button type='submit'>Submit</Button>
   
-                  
-                </td>
-              </tr>
-              <div>
-                <button type='submit'>เสนอ</button>
-              </div>
-            </table></form>
+
+        </Form>
             </Modal.Actions>
           </Modal>
         </div>

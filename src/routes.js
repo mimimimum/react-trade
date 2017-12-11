@@ -7,6 +7,8 @@ import Register from './pages/Register/Register'
 import Login from './pages/Login/Login'
 import Home from './pages/Home/Home'
 import Category from './pages/Category/Category'
+import Profile from './pages/Profile/Profile'
+import EditProfile from './pages/Editprofile/Editprofile'
 
 const Routes = () => {
     return (
@@ -15,6 +17,9 @@ const Routes = () => {
 <Route exact path='/register' component={Register} />
 <Route exact path="/login" component={Login} />
 <Route exact path="/category" component={Category} />
+<Route exact path="/profile" component={Profile} />
+<Route exact path="/editprofile" component={EditProfile} />
+
 {!localStorage.getItem('username') ? (
   <Redirect to="/login" />
 ) : (
