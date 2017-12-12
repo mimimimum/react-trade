@@ -18,7 +18,11 @@ class ModalLogin extends React.Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
+  
+  
+
   onTextChange = event => { // can use for all that have name and value
+    console.log()
     const name = event.target.name
     const value = event.target.value;
     this.setState({
@@ -31,6 +35,7 @@ class ModalLogin extends React.Component {
     login(this.state.username, this.state.password)
       .then(data => {
         if (data.status === 200) {
+          console.log(this)
           localStorage.setItem('username', this.state.username)   //keep username to localstroage    
           this.props.history.replace('/main') // can use when import to file routes // redirect
         }
@@ -59,6 +64,7 @@ class ModalLogin extends React.Component {
                 <button type='submit' className='ui teal fluid button'>Log in </button>
               </form>
             </div>
+            
           </Modal.Actions>
         </Modal>
       </div>

@@ -6,7 +6,7 @@ export default class Footer extends React.Component {
 
   render() {
     return (
-
+<div>
           <Grid padded>
       <Grid.Row color='black' >
             </Grid.Row>
@@ -16,7 +16,7 @@ export default class Footer extends React.Component {
             <Grid.Row color='black' >
             </Grid.Row>
         </Grid>
-      
+        </div>
 
    
 

@@ -43,7 +43,7 @@ onSubmit = event => {
   .then(data => {
     console.log(data);
  if (data.status === 200) {
-      this.props.history.replace('/login') 
+      this.props.history.replace('/home') 
    }
   })
 }

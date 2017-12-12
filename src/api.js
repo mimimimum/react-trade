@@ -58,7 +58,7 @@ export const postItem = (name,description,look,send) => {
      description:description,
      look:look,
      send:send,
-     user: { username: localStorage.getItem('username') }
+     postby: localStorage.getItem('username')
      }
   
     return axiosInstance.post('api/item/create/', item)

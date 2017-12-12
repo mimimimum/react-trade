@@ -28,23 +28,16 @@ export default class Header extends React.Component {
           <Menu.Item name='category' href ="/category" active={activeItem === 'category'} onClick={this.handleItemClick} />
           <Menu.Item name='upload' active={activeItem === 'upload'} onClick={this.handleItemClick} />
           <Menu.Menu position='right'>
-          <ModalRegister href ="/register" name='sign up' active={activeItem === 'sign up'} onClick={this.handleItemClick} />
+          <Menu.Item  href ="/register" name='sign up' active={activeItem === 'sign up'} onClick={this.handleItemClick} />
           <Menu.Item  href='/profile' name='profile' active={activeItem === 'profile'} onClick={this.handleItemClick} />
-            <ModalLogin name='login' active={activeItem === 'login'} onClick={this.handleItemClick} />
+            <Menu.Item href ="/login" name='login' active={activeItem === 'login'} onClick={this.handleItemClick} />
             <Menu.Item name='logout' active={activeItem === 'logout'} onClick={this.signout} />
           </Menu.Menu>
         </Menu>
-     </div>
-     
-
-  
        
-     <Image inverted src="http://www.hotelroomsearch.net/im/hotels/at/panorama-19.jpg" width="100%"/>
-   
-   
+     </div>
+      <Image inverted src="http://www.hotelroomsearch.net/im/hotels/at/panorama-19.jpg" width="100%"/>
       </div>
-     
-
     )
   }
 }
