@@ -1,5 +1,4 @@
 import React from 'react';
-import './Category.css';
 import Header from '../Header/Header';
 
 import GridExampleColumnCount from './GridPic';

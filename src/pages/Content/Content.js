@@ -1,6 +1,5 @@
 import React from 'react';  
-import './Content.css';
-import { Grid, Image } from 'semantic-ui-react'
+import { Grid } from 'semantic-ui-react'
 import ImgShow from './Image'
 export default class Content extends React.Component {
 

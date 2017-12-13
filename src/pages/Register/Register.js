@@ -1,6 +1,4 @@
 import React from 'react';
-import './Register.css';
-import Dropzone from 'react-dropzone'
 import {register} from '../../api'
 import Header from '../Header/Header';
 
@@ -34,12 +32,12 @@ onSubmit = event => {
   })
 }
 
+
+
   render() {
     return (
       <div className="main">
-<Header/>
-
-
+      <Header/>
         <div>
           <form onSubmit={this.onSubmit}>
           <table>

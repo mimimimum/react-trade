@@ -1,7 +1,5 @@
 import React from 'react';
-import './index.css';
-import localStorage from 'localStorage'
-import Dropzone from 'react-dropzone'
+import './Additem.css';
 import {postItem} from '../../api'
 import Header from '../Header/Header';
 class Main extends React.Component {

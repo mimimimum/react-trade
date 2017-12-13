@@ -1,6 +1,7 @@
 import React from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
-import Main from './pages/Main'
+import Index from './pages/Index/Index'
+import Additem from './pages/Additem/Additem'
 import Post from './pages/Post'
 import Register from './pages/Register/Register'
 import Login from './pages/Login/Login'
@@ -8,7 +9,7 @@ import Home from './pages/Home/Home'
 import Category from './pages/Category/Category'
 import Profile from './pages/Profile/Profile'
 import EditProfile from './pages/Editprofile/Editprofile'
-import Index from './pages/Index/Index'
+
 
 const Routes = () => {
     return (
@@ -24,7 +25,7 @@ const Routes = () => {
   <Redirect to="/login" />
 ) : (
   <Switch>
-    <Route exact path='/main' component={Main} />
+    <Route exact path='/upload' component={Additem} />
     <Route exact path='/post' component={Post} />
     <Route exact path="/profile" component={Profile} />
     <Route exact path="/editprofile" component={EditProfile} />

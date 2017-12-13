@@ -1,5 +1,4 @@
 import React from 'react';
-import './Login.css';
 import { login } from '../../api'
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
@@ -27,7 +26,7 @@ class Login extends React.Component {
         if (data.status === 200) {
           console.log(this)
           localStorage.setItem('username', this.state.username)   //keep username to localstroage    
-          this.props.history.replace('/main') // can use when import to file routes // redirect
+          this.props.history.replace('/home') // can use when import to file routes // redirect
         }
       })
   }

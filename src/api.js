@@ -42,7 +42,7 @@ export const editprofile = (firstname ,lastname ,username,password,email,tel) =>
         tel:tel
     }
 
-    return axiosInstance.post('api/user/signup', data)
+    return axiosInstance.put('api/user/editprofile', data)
         .then(data => data)
         .catch(error => error.response)
 }
@@ -86,4 +86,11 @@ export const getAllItem = () => {
         .then(response => response.data)
         .catch(error => { throw (error.response) })
 }
+
+export const getUser= () => {
+    return axiosInstance.get('/api/user/getuser/')
+        .then(response => response.data)
+        .catch(error => { throw (error.response) })
+}
+
 
