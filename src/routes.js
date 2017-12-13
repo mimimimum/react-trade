@@ -18,15 +18,16 @@ const Routes = () => {
 <Route exact path='/register' component={Register} />
 <Route exact path="/login" component={Login} />
 <Route exact path="/category" component={Category} />
-<Route exact path="/profile" component={Profile} />
-<Route exact path="/editprofile" component={EditProfile} />
+
 
 {!localStorage.getItem('username') ? (
   <Redirect to="/login" />
 ) : (
   <Switch>
-       <Route exact path='/main' component={Main} />
-            <Route exact path='/post' component={Post} />
+    <Route exact path='/main' component={Main} />
+    <Route exact path='/post' component={Post} />
+    <Route exact path="/profile" component={Profile} />
+    <Route exact path="/editprofile" component={EditProfile} />
   </Switch>
 )}
 </Switch>
