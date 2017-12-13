@@ -75,7 +75,7 @@ export const postItem = (name,description,lookfor,send,category) => {
      category:category,
      postby: localStorage.getItem('username')
      }
-  
+
     return axiosInstance.post('api/item/create/', item)
       .then(item => item)
       .catch(error => error.response)
@@ -92,5 +92,3 @@ export const getUser= () => {
         .then(response => response.data)
         .catch(error => { throw (error.response) })
 }
-
-

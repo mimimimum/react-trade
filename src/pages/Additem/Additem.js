@@ -8,9 +8,9 @@ class Main extends React.Component {
     description : '',
     lookfor:'',
     send:'',
-    catagory:''
+    category:''
   }
-  
+
   constructor(props) {
    super(props)
        this.state = {
@@ -29,14 +29,14 @@ onDrop(imageFiles) {
 onTextChange = event => { // can use for all that have name and value
   const name = event.target.name
   const value = event.target.value;
-  this.setState({ 
-    [name]: value 
+  this.setState({
+    [name]: value
   })
 }
 
 onSubmit = event => {
   event.preventDefault() // no refresh
-  postItem(this.state.name,this.state.description,this.state.look,this.state.send,this.state.catagory)
+  postItem(this.state.name,this.state.description,this.state.look,this.state.send,this.state.category)
   .then(data => {
  if (data.status === 200) {
       this.props.history.replace('/post') // can use when import to file routes // redirect
@@ -58,9 +58,9 @@ onSubmit = event => {
                 <input type="text" name="look" placeholder="มองหา" value={this.state.look} onChange={this.onTextChange}/><br />
                 <input type="text" name="send" placeholder="การจัดส่ง" value={this.state.send} onChange={this.onTextChange}/><br />
 
-                <input type="radio" name="catagory" value={this.state.catagory ='เสื้อผ้า'} checked/> เสื้อผ้า<br />
-                <input type="radio" name="catagory" value={this.state.catagory='IT'}  /> it<br />
-                <input type="radio" name="catagory" value={this.state.catagory='other'} /> other
+                <input type="radio" name="category" value={this.state.category='เสื้อผ้า'} checked/> เสื้อผ้า<br />
+                <input type="radio" name="category" value={this.state.category='IT'}  /> it<br />
+                <input type="radio" name="category" value={this.state.category='other'} /> other
               </td>
             </tr>
             <div>

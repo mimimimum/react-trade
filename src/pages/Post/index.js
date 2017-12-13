@@ -1,5 +1,4 @@
 import React from 'react';
-import './index.css';
 import {getAllItem} from '../../api'
 import Header from '../Header/Header';
 class Post extends React.Component {
