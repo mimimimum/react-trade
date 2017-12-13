@@ -19,7 +19,9 @@ class Main extends React.Component {
    this.onTextChange = this.onTextChange.bind(this);
    this.onSubmit = this.onSubmit.bind(this);
 }
-
+handleChange = (value) => {
+  this.setState({ category: value })
+}
 onDrop(imageFiles) {
    this.setState({
       imageFiles: imageFiles
@@ -58,9 +60,9 @@ onSubmit = event => {
                 <input type="text" name="look" placeholder="มองหา" value={this.state.look} onChange={this.onTextChange}/><br />
                 <input type="text" name="send" placeholder="การจัดส่ง" value={this.state.send} onChange={this.onTextChange}/><br />
 
-                <input type="radio" name="category" value={this.state.category='เสื้อผ้า'} checked/> เสื้อผ้า<br />
-                <input type="radio" name="category" value={this.state.category='IT'}  /> it<br />
-                <input type="radio" name="category" value={this.state.category='other'} /> other
+                <input type="radio" name="category" value="shirt" onClick={(e) => this.handleChange('shirt')}/> เสื้อผ้า<br />
+                <input type="radio" name="category" value="IT" onClick={(e) => this.handleChange('IT')} /> it<br />
+                <input type="radio" name="category" value="on" onClick={(e) => this.handleChange('on')}  /> other
               </td>
             </tr>
             <div>
