@@ -32,6 +32,20 @@ export const register = (firstname ,lastname ,username,password,email,tel) => {
         .catch(error => error.response)
 }
 
+export const editprofile = (firstname ,lastname ,username,password,email,tel) => {
+    const data = {
+        firstname:firstname,
+        lastname:lastname,
+        username: username,
+        password: password,
+        email:email,
+        tel:tel
+    }
+
+    return axiosInstance.post('api/user/signup', data)
+        .then(data => data)
+        .catch(error => error.response)
+}
 
 export const publishPost = (title, content) => {
     const data = {
@@ -52,12 +66,13 @@ export const getAllPosts = () => {
 }
 
 
-export const postItem = (name,description,look,send) => {
+export const postItem = (name,description,lookfor,send,category) => {
     const item = {
     name:name,
      description:description,
-     look:look,
+     lookfor:lookfor,
      send:send,
+     category:category,
      postby: localStorage.getItem('username')
      }
   

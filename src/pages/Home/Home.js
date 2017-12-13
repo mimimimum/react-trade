@@ -10,7 +10,7 @@ class Home extends React.Component {
   render() {
     return (
       <div> 
-  <Header history={this.props.history}/>
+  <Header />
   
   <Content/>
 

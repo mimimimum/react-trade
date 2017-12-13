@@ -8,8 +8,9 @@ class Main extends React.Component {
   state = { // set state can use in class component only
     name : '',
     description : '',
-    look:'',
-    send:''
+    lookfor:'',
+    send:'',
+    catagory:''
   }
   
   constructor(props) {
@@ -37,57 +38,38 @@ onTextChange = event => { // can use for all that have name and value
 
 onSubmit = event => {
   event.preventDefault() // no refresh
-  postItem(this.state.name,this.state.description,this.state.look,this.state.send)
+  postItem(this.state.name,this.state.description,this.state.look,this.state.send,this.state.catagory)
   .then(data => {
  if (data.status === 200) {
-  localStorage.setItem('username', this.state.username) 
       this.props.history.replace('/post') // can use when import to file routes // redirect
    }
   })
-}
-signout = event => {
-  localStorage.clear();
-  this.props.history.replace('/') // can use push that collect in stack
 }
 
   render() {
     return (
       <div className="main">
          < Header/>
-
-        <div>
-          Welcome again, {localStorage.getItem('username')}
-        </div>
-
         <div>
           <form onSubmit={this.onSubmit}>
           <table>
             <tr>
-            <td>
-            {this.state.imageFiles.length > 0
-            ?
-            <Dropzone onDrop={this.onDrop.bind(this)} className='dropzone' activeClassName='active-dropzone' multiple={false}><div><div>{this.state.imageFiles.map((file) => <img src={file.preview} /> )}</div></div> </Dropzone>
-            :
-            <Dropzone onDrop={this.onDrop.bind(this)} className='dropzone' activeClassName='active-dropzone' multiple={false}>
-              <div>คลิ๊กหรือลากไฟล์มาไว้ที่นี่</div>
-            </Dropzone>}
-          </td>
               <td>
                 <input type="text" name="name" placeholder="ชื่อสิ่งของ" value={this.state.name} onChange={this.onTextChange} /><br />
                 <input type="text" name="description" placeholder="คำอธิบาย" value={this.state.description} onChange={this.onTextChange}/><br />
                 <input type="text" name="look" placeholder="มองหา" value={this.state.look} onChange={this.onTextChange}/><br />
                 <input type="text" name="send" placeholder="การจัดส่ง" value={this.state.send} onChange={this.onTextChange}/><br />
 
-                <input type="radio" name="catagory" value="เสื้อผ้า" checked /> เสื้อผ้า<br />
-                <input type="radio" name="catagory" value="IT" /> it<br />
-                <input type="radio" name="catagory" value="other" /> other
+                <input type="radio" name="catagory" value={this.state.catagory ='เสื้อผ้า'} checked/> เสื้อผ้า<br />
+                <input type="radio" name="catagory" value={this.state.catagory='IT'}  /> it<br />
+                <input type="radio" name="catagory" value={this.state.catagory='other'} /> other
               </td>
             </tr>
             <div>
               <button type='submit'>เสนอ</button>
             </div>
           </table></form>
-          <button onClick={this.signout} className="ui button">Sign out</button>
+
         </div>
 
       </div>

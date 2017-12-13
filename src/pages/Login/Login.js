@@ -9,15 +9,6 @@ class Login extends React.Component {
     username: '',
     password: ''
   }
-  constructor(props) {
-    
-    super(props)
-    this.state = {
-      imageFiles: []
-    }
-    this.onTextChange = this.onTextChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
-  }
 
   onTextChange = event => { // can use for all that have name and value
     console.log(this)
@@ -44,13 +35,9 @@ class Login extends React.Component {
   render() {
     return  ( <div>
       <Header/>
-
-          <form className='ui large form' onSubmit={this.onSubmit}> 
-        
-             <input  type='text'  name='username' placeholder='Username'  value={this.state.username} onChange={this.onTextChange} />
-           
-              <input type='password' name='password' placeholder='Password' value={this.state.password} onChange={this.onTextChange} />
-     
+          <form className='ui large form' onSubmit={this.onSubmit}>   
+             <input  type='text'  name='username' placeholder='Username'  value={this.state.username} onChange={this.onTextChange} />      
+              <input type='password' name='password' placeholder='Password' value={this.state.password} onChange={this.onTextChange} /> 
             <button type='submit' className='ui teal fluid button'>Log in</button>
      
           </form>

@@ -13,20 +13,7 @@ class Register extends React.Component {
     email:"",
     tel:"",
   }
-  constructor(props) {
-    super(props)
-        this.state = {
-            imageFiles: []
-    }
-    this.onTextChange = this.onTextChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
- }
 
-onDrop(imageFiles) {
-   this.setState({
-      imageFiles: imageFiles
-   })
-}
 
 onTextChange = event => { 
   const name = event.target.name
@@ -57,13 +44,6 @@ onSubmit = event => {
           <form onSubmit={this.onSubmit}>
           <table>
             <tr>
-              <td>
-                <Dropzone onDrop={this.onDrop.bind(this)} className='dropzone' activeClassName='active-dropzone' multiple={false}>
-                  <div>Drag and drop or click to select a file to upload.</div>
-                </Dropzone>
-
-                {this.state.imageFiles.length > 0 ? <div><div>{this.state.imageFiles.map((file) => <img src={file.preview} /> )}</div></div> : null}
-              </td>
               <td>
                 <input type="text" name="firstname" placeholder="firstname" value={this.state.firstname} onChange={this.onTextChange} /><br />
                 <input type="text" name="lastname" placeholder="lastname" value={this.state.lastname} onChange={this.onTextChange}/><br />
