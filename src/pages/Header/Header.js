@@ -16,7 +16,7 @@ export default class Header extends React.Component {
   render() {
     const { activeItem } = this.state
 
-    return (<div><div>
+    return (
       <Menu inverted>
           <Menu.Item color='red' href ="/home" name='home' active={activeItem === 'home'} onClick={this.handleItemClick} />
           <Menu.Item name='category' href ="/category" active={activeItem === 'category'} onClick={this.handleItemClick} />
@@ -28,13 +28,8 @@ export default class Header extends React.Component {
            <Menu.Item  href='/profile' name={localStorage.getItem('username')} active={activeItem === 'profile'} onClick={this.handleItemClick} />
            <Menu.Item href='/upload' name='upload' active={activeItem === 'upload'} onClick={this.handleItemClick} />
            <Menu.Item name='logout' active={activeItem === 'logout'} onClick={this.signout} /> </Menu.Menu>
-           )}
-          
-        </Menu>
-       
-     </div>
-      <Image inverted src="http://www.hotelroomsearch.net/im/hotels/at/panorama-19.jpg" width="100%"/>
-      </div>
+           )}   
+       </Menu>
     )
   }
 }

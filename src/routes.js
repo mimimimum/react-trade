@@ -9,6 +9,7 @@ import Home from './pages/Home/Home'
 import Category from './pages/Category/Category'
 import Profile from './pages/Profile/Profile'
 import EditProfile from './pages/Editprofile/Editprofile'
+import Item from './pages/Item/Item'
 
 
 const Routes = () => {
@@ -25,6 +26,7 @@ const Routes = () => {
   <Redirect to="/login" />
 ) : (
   <Switch>
+    <Route exact path='/item' component={Item} />
     <Route exact path='/upload' component={Additem} />
     <Route exact path='/post' component={Post} />
     <Route exact path="/profile" component={Profile} />

@@ -2,6 +2,7 @@ import React from 'react';
 import { login } from '../../api'
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
+import {Form,Button} from 'semantic-ui-react'
 
 class Login extends React.Component {
   state = { // set state can use in class component only
@@ -34,15 +35,19 @@ class Login extends React.Component {
   render() {
     return  ( <div>
       <Header/>
-          <form className='ui large form' onSubmit={this.onSubmit}>   
-             <input  type='text'  name='username' placeholder='Username'  value={this.state.username} onChange={this.onTextChange} />      
-              <input type='password' name='password' placeholder='Password' value={this.state.password} onChange={this.onTextChange} /> 
-            <button type='submit' className='ui teal fluid button'>Log in</button>
+          <Form className='ui large form' onSubmit={this.onSubmit}>   
+
+          <Form.Field>
+      <label>Last Name</label>
+      <Form.Input  type='text'  name='username' placeholder='Username'  value={this.state.username} onChange={this.onTextChange} />      
+
+    </Form.Field>
+              
+              
+              <Form.Input type='password' name='password' placeholder='Password' value={this.state.password} onChange={this.onTextChange} /> 
+            <Button type='submit' className='ui teal fluid button'>Log in</Button>
      
-          </form>
-      
-    
-        <Footer/>
+          </Form>
  </div>
     );
   }
