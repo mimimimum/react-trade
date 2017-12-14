@@ -11,7 +11,6 @@ class Login extends React.Component {
   }
 
   onTextChange = event => { // can use for all that have name and value
-    console.log(this)
     const name = event.target.name
     const value = event.target.value;
     this.setState({
@@ -20,13 +19,12 @@ class Login extends React.Component {
   }
 
   onSubmit = event => {
-    console.log(this)
     event.preventDefault() // no refresh
     login(this.state.username, this.state.password)
       .then(data => {
         if (data.status === 200) {
           console.log(this)
-          localStorage.setItem('username', this.state.username)   //keep username to localstroage    
+          localStorage.setItem('username', this.state.username)   //keep username to localstroage
           this.props.history.replace('/home') // can use when import to file routes // redirect
         }
       })
@@ -35,18 +33,18 @@ class Login extends React.Component {
   render() {
     return  ( <div>
       <Header/>
-          <Form className='ui large form' onSubmit={this.onSubmit}>   
+          <Form className='ui large form' onSubmit={this.onSubmit}>
 
           <Form.Field>
       <label>Last Name</label>
-      <Form.Input  type='text'  name='username' placeholder='Username'  value={this.state.username} onChange={this.onTextChange} />      
+      <Form.Input  type='text'  name='username' placeholder='Username'  value={this.state.username} onChange={this.onTextChange} />
 
     </Form.Field>
-              
-              
-              <Form.Input type='password' name='password' placeholder='Password' value={this.state.password} onChange={this.onTextChange} /> 
+
+
+              <Form.Input type='password' name='password' placeholder='Password' value={this.state.password} onChange={this.onTextChange} />
             <Button type='submit' className='ui teal fluid button'>Log in</Button>
-     
+
           </Form>
  </div>
     );

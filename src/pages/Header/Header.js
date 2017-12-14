@@ -1,4 +1,4 @@
-import React from 'react';  
+import React from 'react';
 import { Menu ,Image} from 'semantic-ui-react';
 export default class Header extends React.Component {
 
@@ -12,7 +12,7 @@ export default class Header extends React.Component {
     console.log(this.props);
    window.location.reload()
   }
-  
+
   render() {
     const { activeItem } = this.state
 
@@ -24,11 +24,11 @@ export default class Header extends React.Component {
           <Menu.Item  href='/register' name='sign up' active={activeItem === 'sign up'} onClick={this.handleItemClick} />
           <Menu.Item  href='/login' name='login' active={activeItem === 'login'} onClick={this.handleItemClick} />
           </Menu.Menu>
-           ) : (  <Menu.Menu position='right'>    
+           ) : (  <Menu.Menu position='right'>
            <Menu.Item  href='/profile' name={localStorage.getItem('username')} active={activeItem === 'profile'} onClick={this.handleItemClick} />
            <Menu.Item href='/upload' name='upload' active={activeItem === 'upload'} onClick={this.handleItemClick} />
            <Menu.Item name='logout' active={activeItem === 'logout'} onClick={this.signout} /> </Menu.Menu>
-           )}   
+           )}
        </Menu>
     )
   }

@@ -47,33 +47,15 @@ export const editprofile = (firstname ,lastname ,username,password,email,tel) =>
         .catch(error => error.response)
 }
 
-export const publishPost = (title, content) => {
-    const data = {
-        title: title,
-        content: content,
-        user: { username: localStorage.getItem('username') }
-    }
-
-    return axiosInstance.post('api/post/create/', data)
-        .then(data => data)
-        .catch(error => error.response)
-}
-
-export const getAllPosts = () => {
-    return axiosInstance.get('/api/post/all/')
-        .then(response => response.data)
-        .catch(error => { throw (error.response) })
-}
-
-
 export const postItem = (name,description,lookfor,send,category) => {
     const item = {
-    name:name,
+    itemimage:'abc.jpg',
+    itemname:name,
      description:description,
      lookfor:lookfor,
-     send:send,
+     transfer:send,
      category:category,
-     postby: localStorage.getItem('username')
+     owner: localStorage.getItem('username')
      }
 
     return axiosInstance.post('api/item/create/', item)
@@ -91,4 +73,20 @@ export const getUser= () => {
     return axiosInstance.get('/api/user/getuser/')
         .then(response => response.data)
         .catch(error => { throw (error.response) })
+}
+export const getCategory= () => {
+    return axiosInstance.get('/api/category')
+        .then(response => response.data)
+        .catch(error => { throw (error.response) })
+}
+
+export const postCategory = (categoryname,value) => {
+    const data = {
+        categoryname:categoryname,
+        value:value
+    }
+
+    return axiosInstance.post('api/category/create', data)
+        .then(data => data)
+        .catch(error => error.response)
 }

@@ -6,7 +6,7 @@ import { editprofile, getUser } from '../../api'
 import { Segment } from 'semantic-ui-react'
 
 class Profile extends React.Component {
-     
+
   state = { // set state can use in class component only
     id:'',
     username: localStorage.getItem('username'),

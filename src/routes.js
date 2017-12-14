@@ -10,6 +10,7 @@ import Category from './pages/Category/Category'
 import Profile from './pages/Profile/Profile'
 import EditProfile from './pages/Editprofile/Editprofile'
 import Item from './pages/Item/Item'
+import Admin from './pages/Admin/Admin'
 
 
 const Routes = () => {
@@ -20,6 +21,7 @@ const Routes = () => {
 <Route exact path='/register' component={Register} />
 <Route exact path="/login" component={Login} />
 <Route exact path="/category" component={Category} />
+<Route exact path="/admin" component={Admin} />
 
 
 {!localStorage.getItem('username') ? (
