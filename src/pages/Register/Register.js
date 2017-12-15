@@ -1,16 +1,18 @@
 import React from 'react';
 import { register } from '../../api'
 import Header from '../Header/Header';
-import { Input, Grid, Button, Form, Segment, Label } from 'semantic-ui-react'
+import { Input, Grid, Button, Form, Segment, Label,TextArea } from 'semantic-ui-react'
 
 class Register extends React.Component {
   state = { // set state can use in class component only
-    firstname: "",
-    lastname: "",
-    username: "",
-    password: "",
-    email: "",
-    tel: "",
+    img: '',
+    username: '',
+    password: '',
+    firstname: '',
+    lastname: '',
+    address:'',
+    email: '',
+    phone: ''
   }
 
 
@@ -24,7 +26,7 @@ class Register extends React.Component {
 
   onSubmit = event => {
     event.preventDefault()
-    register(this.state.firstname, this.state.lastname, this.state.username, this.state.password, this.state.email, this.state.tel)
+    register(this.state.img, this.state.username, this.state.password,this.state.firstname, this.state.lastname, this.state.email, this.state.phone,this.state.address)
       .then(data => {
         console.log(data);
         if (data.status === 200) {
@@ -39,36 +41,66 @@ class Register extends React.Component {
     return (
       <div>
         <Header />
-        <form onSubmit={this.onSubmit} >
-        <Segment.Group horizontal>
-          <Segment inverted color='black'>
-          </Segment>
+        <Grid columns={3}>
+          <Grid.Row>
+            <Grid.Column width={3}>
+            </Grid.Column>
+            <Grid.Column width={10}>
 
-          <Segment inverted color='black' textAlign='center'>
-            <Input type="text" name="firstname" placeholder="firstname" value={this.state.firstname} onChange={this.onTextChange} />
-            <Label color='red' pointing='left'>Firstname</Label>
-            <br/><br/>
-            <Input type="text" name="lastname" placeholder="lastname" value={this.state.lastname} onChange={this.onTextChange} />
-            <Label color='red' pointing='left'>Lastname</Label>
-            <br/><br/>
-            <Input type="text" name="username" placeholder="username" value={this.state.username} onChange={this.onTextChange} />
-            <Label color='red' pointing='left'>Username</Label>
-            <br/><br/>
-            <Input type="text" name="password" placeholder="password" value={this.state.password} onChange={this.onTextChange} />
-            <Label color='red' pointing='left'>Password</Label>
-            <br/><br/>
-            <Input type="text" name="email" placeholder="email" value={this.state.email} onChange={this.onTextChange} />
-            <Label color='red' pointing='left'>E-mail</Label>
-            <br/><br/>
-            <Input type="text" name="tel" placeholder="tel" value={this.state.tel} onChange={this.onTextChange} />
-            <Label color='red' pointing='left'>Telephone</Label>
-            <br/><br/>
-            <Button inverted color='red' type='submit'>SUBMIT</Button>
-          </Segment>
-          <Segment inverted color='black'>
-          </Segment>
-        </Segment.Group>
-      </form>
+              <Segment inverted color='black'>
+                <h1 align='center'> REGISTER </h1>
+                <Form onSubmit={this.onSubmit} >
+                  <Segment.Group horizontal inverted>
+                    <Segment>
+                      <Label attached='top' color='red'>PHOTO</Label>
+                      <Form.Input type="text" name="img" placeholder="img" value={this.state.img} onChange={this.onTextChange} />
+                    </Segment>
+                  </Segment.Group>
+                  <Segment.Group horizontal inverted>
+                    <Segment >
+                      <Label attached='top' color='red'>USERNAME</Label>
+                      <Form.Input type="text" name="username" placeholder="username" value={this.state.username} onChange={this.onTextChange} />
+                    </Segment>
+                    <Segment >
+                      <Label attached='top' color='red'>PASSWORD</Label>
+                      <Form.Input type="password" name="password" placeholder="password" value={this.state.password} onChange={this.onTextChange} />
+                    </Segment>
+                  </Segment.Group>
+                  <Segment.Group horizontal inverted>
+                    <Segment >
+                      <Label attached='top' color='red'>FIRSTNAME</Label>
+                      <Form.Input type="text" name="firstname" placeholder="firstname" value={this.state.firstname} onChange={this.onTextChange} />
+                    </Segment>
+                    <Segment >
+                      <Label attached='top' color='red'>LASTNAME</Label>
+                      <Form.Input type="text" name="lastname" placeholder="lastname" value={this.state.lastname} onChange={this.onTextChange} />
+                    </Segment>
+                  </Segment.Group>
+                  <Segment.Group horizontal inverted>
+                    <Segment >
+                      <Label attached='top' color='red'>E-MAIL</Label>
+                      <Input type="email" name="email" placeholder="email" value={this.state.email} onChange={this.onTextChange} />
+                    </Segment>
+                    <Segment >
+                      <Label attached='top' color='red'>PHONE</Label>
+                      <Input type="Telephone" name="phone" placeholder="phone" value={this.state.phone} onChange={this.onTextChange} />
+                    </Segment>
+                  </Segment.Group>
+                  <Segment.Group horizontal inverted>
+                    <Segment >
+                      <Label attached='top' color='red'>ADDRESS</Label>
+                      <TextArea autoHeight placeholder='address' name="address" value={this.state.address} onChange={this.onTextChange}/>
+                    </Segment>
+                  </Segment.Group>
+                  <Button inverted color='red' fluid type='submit'>SUBMIT</Button>
+                </Form>
+              </Segment>
+            </Grid.Column >
+            <Grid.Column width={3}>
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
+
       </div>
     );
   }

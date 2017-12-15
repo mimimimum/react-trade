@@ -17,14 +17,16 @@ export const login = (username, password) => {
         .catch(error => error.response)
 }
 
-export const register = (firstname ,lastname ,username,password,email,tel) => {
+export const register = (img,username,password,firstname ,lastname,email,phone,address) => {
     const data = {
-        firstname:firstname,
-        lastname:lastname,
+        profileimage: img,
+        firstname: firstname,
+        lastname: lastname,
         username: username,
         password: password,
-        email:email,
-        tel:tel
+        email: email,
+        phone: phone,
+        address: address
     }
 
     return axiosInstance.post('api/user/signup', data)

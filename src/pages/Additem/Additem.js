@@ -59,7 +59,7 @@ render() {
      < Header />
 
      <Grid>
-       <Grid.Row columns={2} only='large screen'>
+       <Grid.Row columns={2}>
          <Grid.Column>
            <Segment>
            </Segment>
@@ -93,7 +93,7 @@ render() {
                    cates.map(cate =>
                      cate.categoryname ?
                      (
-               <input type="radio" name="cate" value={cate.value} onClick={(e) => this.handleChange(cate.value)} />
+               <span><input type="radio" name="cate" value={cate.value} onClick={(e) => this.handleChange(cate.value)} /><Label>{cate.value}</Label></span>
                     )
                      :
                      null

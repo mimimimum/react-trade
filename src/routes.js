@@ -21,9 +21,6 @@ const Routes = () => {
 <Route exact path='/register' component={Register} />
 <Route exact path="/login" component={Login} />
 <Route exact path="/category" component={Category} />
-<Route exact path="/admin" component={Admin} />
-
-
 {!localStorage.getItem('username') ? (
   <Redirect to="/login" />
 ) : (
@@ -33,8 +30,14 @@ const Routes = () => {
     <Route exact path='/post' component={Post} />
     <Route exact path="/profile" component={Profile} />
     <Route exact path="/setting/:id" component={EditProfile} />
-  </Switch>
-)}
+
+    {localStorage.getItem('status') == 'user' ? (
+      <Redirect to="/home" />
+    ) : (
+        <Route exact path="/Admin" component={Admin} />
+      )}
+      </Switch>
+    )}
 </Switch>
     )
 }

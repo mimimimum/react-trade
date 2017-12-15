@@ -17,10 +17,10 @@ export default class Index extends React.Component {
                 <a href="/home" >
                 <Button  color='red' animated='fade' size='massive'>
                 <Button.Content visible>
-                    LET'S GO!
+                    YOU WANT SOMETHING!?!
                 </Button.Content>
                 <Button.Content color='red' size='massive' hidden>
-                    SWAAAAP !!!
+                    LET'S SWAAAAP !!!
                 </Button.Content>
                 </Button>
                 </a>

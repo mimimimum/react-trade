@@ -3,7 +3,7 @@ import Header from '../Header/Header';
 import {getAllItem,getCategory} from '../../api'
 import { Grid, Icon ,Label,Menu,Segment,Button,Input,Image } from 'semantic-ui-react'
 
-class Home extends React.Component {
+class Category extends React.Component {
   state = {
     activeItem: 'all',
     allCategory: [],
@@ -40,11 +40,10 @@ handleItemClick = (e, { value }) => this.setState({ activeItem: value ,cate : va
     return (
       <div>
         < Header />
-
-        <Grid >
+        <Grid inverted color='red'>
         <Grid.Column width={2}>
-          <Menu fluid vertical tabular>
-          {console.log(cates),
+          <Menu fluid vertical tabular color='red' inverted >
+          {
             cates.length >= 0
             ? //in { } is logic
               cates.map(cate =>
@@ -63,17 +62,17 @@ handleItemClick = (e, { value }) => this.setState({ activeItem: value ,cate : va
         </Grid.Column>
 
         <Grid.Column stretched width={12}>
-          <Segment>
-<Grid>
+          <Segment color='black' inverted>
+      <Grid>
           {
           posts.length >= 0
           ? //in { } is logic
             posts.map(post =>
               post.category==this.state.cate || this.state.cate == "all"
               ?
-              (<Grid.Column width={4}><a href={'item/'+post._id}><Image
+              (<Grid.Column color='black' width={4}><a href={'item/'+post._id}><Image
                       fluid
-                      label={{ as: 'a', color: 'black', content: post.description, icon: 'hotel', ribbon: true }}
+                      label={{ as: 'a', color: 'red', content: post.description, icon: 'globe', ribbon: true }}
                       src={post.itemimage} size='medium'
                     /></a></Grid.Column>
               )
@@ -87,6 +86,7 @@ handleItemClick = (e, { value }) => this.setState({ activeItem: value ,cate : va
         </Grid.Column>
       </Grid>
 
+
       </div>
 
 
@@ -94,4 +94,4 @@ handleItemClick = (e, { value }) => this.setState({ activeItem: value ,cate : va
   }
 }
 
-export default Home;
+export default Category;

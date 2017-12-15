@@ -1,59 +1,45 @@
 import React from 'react';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
-import {Grid,Image} from 'semantic-ui-react'
+import {getAllItem} from '../../api'
+import {Grid,Image,Segment,Card} from 'semantic-ui-react'
 
 class Home extends React.Component {
-
+  state={
+    allPosts: [],    cate: "all"
+  }
+  getItems = () => {
+    getAllItem()
+      .then(data => this.setState({ allPosts: data }))
+      .catch(err => console.error('Something went wrong.'))
+  }
+  componentDidMount() { // when render finish call is func
+    this.getItems()
+  }
   render() {
+  const posts = this.state.allPosts
     return (
       <div>
-  <Header />
-  <Grid centered columns={2}  >
-    <Grid.Row centered columns={4} color='black'>
-    <Grid.Column>
-    <Image src='https://i.pinimg.com/736x/67/ac/b9/67acb9194605e8c8341864b0d22cd680--we-bare-bears-panda.jpg' />
-    </Grid.Column>
-    <Grid.Column>
-    <Image src='https://i.pinimg.com/736x/67/ac/b9/67acb9194605e8c8341864b0d22cd680--we-bare-bears-panda.jpg' />
-    </Grid.Column>
-    <Grid.Column>
-    <Image src='https://i.pinimg.com/736x/67/ac/b9/67acb9194605e8c8341864b0d22cd680--we-bare-bears-panda.jpg' />
-    </Grid.Column>
-    <Grid.Column>
-    <Image src='https://i.pinimg.com/736x/67/ac/b9/67acb9194605e8c8341864b0d22cd680--we-bare-bears-panda.jpg' />
-    </Grid.Column>
-  </Grid.Row>
+        <Header />
+        <Segment inverted>
 
-    <Grid.Row centered columns={4} color='black'>
-      <Grid.Column>
-      <Image src='https://i.pinimg.com/736x/67/ac/b9/67acb9194605e8c8341864b0d22cd680--we-bare-bears-panda.jpg' />
-      </Grid.Column>
-      <Grid.Column>
-      <Image src='https://i.pinimg.com/736x/67/ac/b9/67acb9194605e8c8341864b0d22cd680--we-bare-bears-panda.jpg' />
-      </Grid.Column>
-      <Grid.Column>
-      <Image src='https://i.pinimg.com/736x/67/ac/b9/67acb9194605e8c8341864b0d22cd680--we-bare-bears-panda.jpg' />
-      </Grid.Column>
-    </Grid.Row>
-
-    <Grid.Row centered columns={4} color='black'>
-      <Grid.Column>
-      <Image src='https://i.pinimg.com/736x/67/ac/b9/67acb9194605e8c8341864b0d22cd680--we-bare-bears-panda.jpg' />
-      </Grid.Column>
-      <Grid.Column>
-      <Image src='https://i.pinimg.com/736x/67/ac/b9/67acb9194605e8c8341864b0d22cd680--we-bare-bears-panda.jpg' />
-      </Grid.Column>
-      <Grid.Column>
-      <Image src='https://i.pinimg.com/736x/67/ac/b9/67acb9194605e8c8341864b0d22cd680--we-bare-bears-panda.jpg' />
-      </Grid.Column>
-      <Grid.Column>
-      <Image src='https://i.pinimg.com/736x/67/ac/b9/67acb9194605e8c8341864b0d22cd680--we-bare-bears-panda.jpg' />
-      </Grid.Column>
-    </Grid.Row>
-  </Grid>
-
-  <Footer/>
+<Card.Group itemsPerRow={4}>
+            {
+            posts.length >= 0
+            ? //in { } is logic
+              posts.map(post =>
+                post.category==this.state.cate || this.state.cate == "all"
+                ?
+                (<a href={'item/'+post._id}><Card color='red' image={post.itemimage}/></a>
+                )
+                :
+                null
+              )
+            :
+            null
+          }
+            </Card.Group></Segment>
+        <Footer/>
       </div>
 
 

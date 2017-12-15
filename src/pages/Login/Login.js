@@ -25,7 +25,7 @@ class Login extends React.Component {
         if (data.status === 200) {
           console.log(this)
           localStorage.setItem('username', this.state.username)   //keep username to localstroage
-          this.props.history.replace('/home') // can use when import to file routes // redirect
+          this.props.history.replace('/profile') // can use when import to file routes // redirect
         }
       })
   }
@@ -34,31 +34,38 @@ class Login extends React.Component {
     return (
 <div>
 <Header />
-<Grid color='black'>
-<Grid columns={3}>
-  <Grid.Row>
-    <Grid.Column>
-    </Grid.Column>
-    <Grid.Column>
-      <Segment padded>
+<Grid>
+   <Grid columns={3}>
+     <Grid.Row>
+       <Grid.Column>
+       </Grid.Column>
 
-        <Form className='ui large form' onSubmit={this.onSubmit}>
-          <Form.Field>
-            <label>USERNAME</label>
-            <Form.Input type='text' name='username' placeholder='Username' value={this.state.username} onChange={this.onTextChange} required />
+       <Grid.Column color='black'>
+       <h1 align = 'center'> LOGIN </h1>
 
-            <label>PASSWORD</label>
-            <Form.Input type='password' name='password' placeholder='Password' value={this.state.password} onChange={this.onTextChange} required />
-            <Button type='submit' className='ui teal fluid button'>Log in</Button>
-          </Form.Field>
-        </Form>
-      </Segment>
-    </Grid.Column>
-    <Grid.Column>
-    </Grid.Column>
-  </Grid.Row>
-</Grid>
-</Grid>
+           <Form className='ui large form' onSubmit={this.onSubmit}>
+             <Segment >
+               <Label color='red' attached='top'>USERNAME</Label>
+
+               <Form.Input type='text' name='username' placeholder='Username' value={this.state.username} onChange={this.onTextChange} required />
+
+             </Segment >
+
+             <Segment>
+               <Label color='red' attached='top'>PASSWORD</Label>
+               <Form.Input type='password' name='password' placeholder='Password' value={this.state.password} onChange={this.onTextChange} required />
+             </Segment>
+             <Button fluid type='submit' inverted color='red' >LOGIN</Button>
+           </Form>
+
+
+       </Grid.Column>
+
+
+     </Grid.Row>
+   </Grid >
+   </Grid>
+
 </div>
 
 

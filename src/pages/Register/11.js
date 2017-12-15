@@ -1,15 +1,14 @@
 import React from 'react';
 import Header from '../Header/Header';
-import { getCategory ,postCategory,getUser} from '../../api'
+import { getCategory, postCategory } from '../../api'
 import { Segment, Button, Input, Card, Image, Grid, Label, Form, List, Table } from 'semantic-ui-react'
 
 class Admin extends React.Component {
 
   state = { // set state can use in class component only
-      category:'',
-      value:'',
-allCategory:[],
-allUsers:[]
+    category: '',
+    value: '',
+    allCategory: []
   }
 
   onTextChange = event => { // can use for all that have name and value
@@ -37,20 +36,14 @@ allUsers:[]
       .catch(err => console.error('Something went wrong.'))
   }
 
-  getUsers = () => {
-    getUser()
-      .then(data => this.setState({ allUsers: data }))
-      .catch(err => console.error('Something went wrong.'))
-  }
+
   componentDidMount() { // when render finish call is func
     this.getCategories()
-  this.getUsers()
   }
 
 
   render() {
     const posts = this.state.allCategory
-    const users = this.state.allUsers
     return (
       <div >
         < Header />
@@ -60,17 +53,28 @@ allUsers:[]
               <Grid.Column>
                 <Segment color = 'black'>
                   <h1>USER</h1>
-                  {users.length >= 0 ? //in { } is logic
-                    users.map(post =>
 
 
-                      <Segment size='small'>{post.username}
+
+                        <Segment size='small'>Name
+                          <Button floated ='right' type='submit' inverted color='red' >BAN</Button>
+                          <Button floated ='right' type='submit' inverted color='green' >UNBAN</Button><br/><br/>
+                        </Segment>
+                        <Segment size='small'>Name
                         <Button floated ='right' type='submit' inverted color='red' >BAN</Button>
                         <Button floated ='right' type='submit' inverted color='green' >UNBAN</Button><br/><br/>
                       </Segment>
-                    )
-                    : null
-                  }
+                      <Segment size='small'>Name
+                      <Button floated ='right' type='submit' inverted color='red' >BAN</Button>
+                      <Button floated ='right' type='submit' inverted color='green' >UNBAN</Button><br/><br/>
+                    </Segment>
+                    <Segment size='small'>Name
+                    <Button floated ='right' type='submit' inverted color='red' >BAN</Button>
+                    <Button floated ='right' type='submit' inverted color='green' >UNBAN</Button><br/><br/>
+                  </Segment>
+
+
+
                 </Segment>
 
               </Grid.Column>
@@ -107,7 +111,11 @@ allUsers:[]
           </Grid >
         </Grid >
 
-      </div>
+
+
+      </div >
+
+
 
 
     );
