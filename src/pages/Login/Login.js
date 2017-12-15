@@ -57,7 +57,12 @@ class Login extends React.Component {
              </Segment>
              <Button fluid type='submit' inverted color='red' >LOGIN</Button>
            </Form>
-
+           <a href="http://swaaaap.herokuapp.com/oauth/facebook" ><button class="ui facebook circular icon button" role="button">
+                <i aria-hidden="true" class="facebook icon"></i>
+            </button></a>
+           <button class="ui twitter circular icon button" role="button">
+         <i aria-hidden="true" class="twitter icon"></i>
+         </button>
 
        </Grid.Column>
 

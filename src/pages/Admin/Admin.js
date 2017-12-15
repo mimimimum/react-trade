@@ -71,13 +71,13 @@ userstatus:''
           <Grid columns={2}>
             <Grid.Row>
               <Grid.Column>
-                <Segment color = 'black'>
-                  <h1>USER</h1>
+                <Segment inverted>
+                <h1 align='center'>USER</h1>
                   {users.length >= 0 ? //in { } is logic
                     users.map(post =>
 
 
-                      <Segment size='small'>{post.username}
+                      <Segment clearing size='medium'>{post.username}
                         {post.status == 'superadmin' ?(
                           <Button floated='right' name='userstatus'  inverted color='green' >SUPERADMIN</Button>
                         ):null}
@@ -101,11 +101,12 @@ userstatus:''
 
               </Grid.Column>
               <Grid.Column>
-
+    <Segment inverted >
+  <h1 align='center'>CATEGORY</h1>
                 <Segment >
 
 
-                  <h1>CATEGORY</h1>
+
 
 
                   {
@@ -127,7 +128,7 @@ userstatus:''
                     <Input type='text' name='value' value={this.state.value} onChange={this.onTextChange} /> <Button type='submit'>Add</Button>
                   </form>
                 </Segment>
-
+    </Segment>
               </Grid.Column>
 
             </Grid.Row>

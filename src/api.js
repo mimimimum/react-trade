@@ -62,9 +62,13 @@ description:description
 
 
 export const editstatus = (id,status) => {
-
-
     return axiosInstance.put('api/user/editstatus/'+id+'/'+status)
+        .then(data => data)
+        .catch(error => error.response)
+}
+
+export const edititemstatus = (id,username,itemname) => {
+    return axiosInstance.put('api/item/edititemstatus/'+id+'/'+username+'/'+itemname)
         .then(data => data)
         .catch(error => error.response)
 }

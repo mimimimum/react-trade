@@ -72,7 +72,7 @@ handleItemClick = (e, { value }) => this.setState({ activeItem: value ,cate : va
               ?
               (<Grid.Column color='black' width={4}><a href={'item/'+post._id}><Image
                       fluid
-                      label={{ as: 'a', color: 'red', content: post.description, icon: 'globe', ribbon: true }}
+                      label={{ as: 'a', color: 'red', content: post.itemname, icon: 'globe', ribbon: true }}
                       src={post.itemimage} size='medium'
                     /></a></Grid.Column>
               )

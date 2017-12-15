@@ -41,6 +41,7 @@ onSubmit = event => {
   postItem(this.state.name,this.state.description,this.state.look,this.state.send,this.state.cate,this.state.img)
   .then(data => {
  if (data.status === 200) {
+this.props.history.replace('/home')
    }
   })
 }
@@ -68,27 +69,27 @@ render() {
              <Form onSubmit={this.onSubmit}>
                <Segment >
                  <Label color='red' ribbon>Image link</Label>
-                 <Form.Input type="text" name="img" placeholder="img" value={this.state.img} onChange={this.onTextChange} />
+                 <Form.Input type="text" name="img" placeholder="img" value={this.state.img} onChange={this.onTextChange} required/>
                </Segment >
 
                <Segment >
                  <Label color='red' ribbon>Name</Label>
-                 <Form.Input type="text" name="name" placeholder="name" value={this.state.name} onChange={this.onTextChange} />
+                 <Form.Input type="text" name="name" placeholder="name" value={this.state.name} onChange={this.onTextChange} required/>
                </Segment >
 
                <Segment >
                  <Label color='red' ribbon>Description</Label>
-                 <Form.Input type="text" name="description" placeholder="description" value={this.state.description} onChange={this.onTextChange} />
+                 <Form.Input type="text" name="description" placeholder="description" value={this.state.description} onChange={this.onTextChange} required/>
                </Segment >
 
                <Segment >
                  <Label color='red' ribbon>Looking for</Label>
-                 <Form.Input type="text" name="look" placeholder="looking for" value={this.state.look} onChange={this.onTextChange} />
+                 <Form.Input type="text" name="look" placeholder="looking for" value={this.state.look} onChange={this.onTextChange} required/>
                </Segment >
 
                <Segment >
                  <Label color='red' ribbon>Transportation</Label>
-                 <Form.Input type="text" name="send" placeholder="transportation" value={this.state.send} onChange={this.onTextChange} />
+                 <Form.Input type="text" name="send" placeholder="transportation" value={this.state.send} onChange={this.onTextChange} required/>
                </Segment >
 
 
@@ -99,7 +100,7 @@ render() {
                      cates.length >= 0
                        ? //in { } is logic
                        cates.map(cate =>
-                         cate.categoryname ?
+                         cate.categoryname && cate.value != 'all' ?
                            (
                              <span><Radio name="cate" value={cate.value} onClick={(e) => this.handleChange(cate.value)} /><Label>{cate.value}</Label></span>
                            )
