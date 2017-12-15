@@ -28,8 +28,8 @@ export default class Header extends React.Component {
           }
           {localStorage.getItem('username') ? (<Menu.Menu position='right'>
             <Menu.Item  href='/profile' name={localStorage.getItem('username')} active={activeItem === 'profile'} onClick={this.handleItemClick} />
-            {localStorage.getItem('status')=='admin' ? (
-            <Menu.Item href='/admin' name='admin' active={activeItem === 'admin'} onClick={this.handleItemClick} />
+            {localStorage.getItem('status')=='superadmin' || localStorage.getItem('status')=='admin' ? (
+            <Menu.Item href='/admin' name='Management' active={activeItem === 'admin'} onClick={this.handleItemClick} />
             ):null}
             <Menu.Item href='/upload' name='upload' active={activeItem === 'upload'} onClick={this.handleItemClick} />
             <Menu.Item name='logout' active={activeItem === 'logout'} onClick={this.signout} />

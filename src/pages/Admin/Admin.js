@@ -78,6 +78,9 @@ userstatus:''
 
 
                       <Segment size='small'>{post.username}
+                        {post.status == 'superadmin' ?(
+                          <Button floated='right' name='userstatus'  inverted color='green' >SUPERADMIN</Button>
+                        ):null}
                         {post.status == 'user' ?(
                           <Button floated='right' name='userstatus'  inverted color='green' onClick={(e) => this.handleChange(post._id,"ban")} >BAN</Button>
                         ):null}
