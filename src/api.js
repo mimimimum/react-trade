@@ -3,6 +3,7 @@ import localStorage from 'localStorage'
 
 const axiosInstance = axios.create({
     baseURL: 'https://swaaaap.herokuapp.com/',
+  //  baseURL: 'https://localhost:3001/',
     headers: { 'Content-Type': 'application/json' }
 })
 
@@ -61,11 +62,9 @@ description:description
 
 
 export const editstatus = (id,status) => {
-    const data = {
-        status: status
-    }
 
-    return axiosInstance.put('api/user/editstatus/'+id, data)
+
+    return axiosInstance.put('api/user/editstatus/'+id+'/'+status)
         .then(data => data)
         .catch(error => error.response)
 }

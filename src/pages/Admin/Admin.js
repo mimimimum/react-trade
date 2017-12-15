@@ -9,7 +9,9 @@ class Admin extends React.Component {
       category:'',
       value:'',
 allCategory:[],
-allUsers:[]
+allUsers:[],
+userid:'',
+userstatus:''
   }
 
   onTextChange = event => { // can use for all that have name and value
@@ -31,7 +33,7 @@ allUsers:[]
         }
       })
   }
-  onClick =  (id,status) => {
+  handleChange = (id, status) => {
     editstatus(id, status)
       .then(data => {
         if (data.status === 200) {
@@ -77,16 +79,16 @@ allUsers:[]
 
                       <Segment size='small'>{post.username}
                         {post.status == 'user' ?(
-                          <a href=''><Button floated='right' inverted color='green' onClick={this.onClick(post._id,post.status)} >BAN</Button></a>
+                          <Button floated='right' name='userstatus'  inverted color='green' onClick={(e) => this.handleChange(post._id,"ban")} >BAN</Button>
                         ):null}
                         {post.status == 'ban' ?(
-                          <a href=''><Button floated='right' inverted color='red' >UNBAN</Button></a>
+                          <Button floated='right' name='userstatus'  inverted color='red' onClick={(e) => this.handleChange(post._id,"user")}>UNBAN</Button>
                         ):null}
                         {post.status == 'user' ?(
-                          <a href=''><Button floated='right' inverted color='red' >ADMIN</Button></a>
+                          <Button floated='right' name='userstatus'  inverted color='red'onClick={(e) => this.handleChange(post._id,"admin")} >ADMIN</Button>
                         ):null}
                         {post.status == 'admin' ?(
-                          <a href=''><Button floated='right' inverted color='red' >USER</Button></a>
+                          <Button floated='right' name='userstatus'  inverted color='red' onClick={(e) => this.handleChange(post._id,"user")}>USER</Button>
                         ):null}
                       </Segment>
                     )
