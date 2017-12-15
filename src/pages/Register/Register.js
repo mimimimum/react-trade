@@ -83,7 +83,7 @@ class Register extends React.Component {
                     </Segment>
                     <Segment >
                       <Label attached='top' color='red'>PHONE</Label>
-                      <Input type="Telephone" name="phone" placeholder="phone" value={this.state.phone} onChange={this.onTextChange} />
+                      <Input type="number" name="phone" placeholder="phone" value={this.state.phone} onChange={this.onTextChange} />
                     </Segment>
                   </Segment.Group>
                   <Segment.Group horizontal inverted>

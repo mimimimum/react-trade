@@ -46,18 +46,19 @@ export const editprofile = (id,address,email,phone) => {
         .catch(error => error.response)
 }
 
-export const reply = (id,reply,img,name,description) => {
+export const editstatus = (id,status) => {
     const data = {
-        reply: reply,
-        img:img,
-        name:name,
-description:description
+        status: status
     }
 
-    return axiosInstance.put('api/item/reply/'+id, data)
+    return axiosInstance.put('api/user/editstatus/'+id, data)
         .then(data => data)
         .catch(error => error.response)
 }
+
+
+
+
 
 export const postItem = (name,description,lookfor,send,category,img) => {
     const item = {

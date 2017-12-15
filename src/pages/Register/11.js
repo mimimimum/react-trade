@@ -1,14 +1,24 @@
 import React from 'react';
+import './Editprofile.css';
 import Header from '../Header/Header';
-import { getCategory, postCategory } from '../../api'
-import { Segment, Button, Input, Card, Image, Grid, Label, Form, List, Table } from 'semantic-ui-react'
+import CardExampleGroups from './History.js';
+import { editprofile, getUser } from '../../api'
+import { Segment, Input, Button, Label, Form,TextArea } from 'semantic-ui-react'
 
-class Admin extends React.Component {
+class EditProfile extends React.Component {
 
   state = { // set state can use in class component only
-    category: '',
-    value: '',
-    allCategory: []
+    id: '',
+    username: localStorage.getItem('username'),
+    password: '',
+    firstname: '',
+    lastname: '',
+    email: '',
+    address: '',
+    phone: '',
+    allUsers: [],
+    id: this.props.match.params.id,
+    defaultDepartment: 0
   }
 
   onTextChange = event => { // can use for all that have name and value
@@ -21,7 +31,7 @@ class Admin extends React.Component {
 
   onSubmit = event => {
     event.preventDefault() // no refresh
-    postCategory(this.state.category, this.state.value)
+    editprofile(this.state.id, this.state.address, this.state.email, this.state.phone)
       .then(data => {
         if (data.status === 200) {
           window.location.reload();
@@ -30,96 +40,78 @@ class Admin extends React.Component {
         }
       })
   }
-  getCategories = () => {
-    getCategory()
-      .then(data => this.setState({ allCategory: data }))
+  getUsers = () => {
+    getUser()
+      .then(data => this.setState({ allUsers: data }))
       .catch(err => console.error('Something went wrong.'))
   }
 
 
   componentDidMount() { // when render finish call is func
-    this.getCategories()
+    this.getUsers()
   }
 
 
   render() {
-    const posts = this.state.allCategory
+    const posts = this.state.allUsers
     return (
       <div >
         < Header />
-        <Grid>
-          <Grid columns={2}>
-            <Grid.Row>
-              <Grid.Column>
-                <Segment color = 'black'>
-                  <h1>USER</h1>
+        <Segment.Group horizontal>
+          {
+            posts.length >= 0
+              ? //in { } is logic
+              posts.map(post =>
+                post.username == localStorage.getItem('username') ?
+                  (
 
-
-
-                        <Segment size='small'>Name
-                          <Button floated ='right' type='submit' inverted color='red' >BAN</Button>
-                          <Button floated ='right' type='submit' inverted color='green' >UNBAN</Button><br/><br/>
-                        </Segment>
-                        <Segment size='small'>Name
-                        <Button floated ='right' type='submit' inverted color='red' >BAN</Button>
-                        <Button floated ='right' type='submit' inverted color='green' >UNBAN</Button><br/><br/>
-                      </Segment>
-                      <Segment size='small'>Name
-                      <Button floated ='right' type='submit' inverted color='red' >BAN</Button>
-                      <Button floated ='right' type='submit' inverted color='green' >UNBAN</Button><br/><br/>
+                    <Segment>
+                      <h1>EDIT YOUR PROFILE</h1>
+                      <Form class="ui form" onSubmit={this.onSubmit}>
+                        <Segment >
+                          <Label color='red' ribbon>ADDRESS</Label>
+                          <TextArea autoHeight type="text" name="address" placeholder={post.address} value={this.state.address} onChange={this.onTextChange} required />
+                        </Segment >
+                        <Segment >
+                          <Label color='red' ribbon>E-MAIL</Label>
+                          <Input type="text" name="email" placeholder={post.email} value={this.state.email} onChange={this.onTextChange} required />
+                        </Segment >
+                        <Segment >
+                          <Label color='red' ribbon>PHONE</Label>
+                          <Input type="text" name="phone" placeholder={post.phone} value={this.state.phone} onChange={this.onTextChange} required />
+                        </Segment >
+                        <br />
+                        <br />
+                        <Button inverted color='red' type='submit'>SUBMIT</Button>
+                      </Form>
+                      <br />
                     </Segment>
-                    <Segment size='small'>Name
-                    <Button floated ='right' type='submit' inverted color='red' >BAN</Button>
-                    <Button floated ='right' type='submit' inverted color='green' >UNBAN</Button><br/><br/>
-                  </Segment>
+                  )
+                  :
+                  null
+              )
+              :
+              null
+          }
+          <Segment>
+            <h1>HISTORY</h1>
+            {posts.length >= 0 ? //in { } is logic
+              posts.map(post =>
+                <div className='ui segment'>
+                  <p>Published by: {post.username}</p>
+                </div>
+              )
+              : null
+            }
 
+          </Segment>
 
-
-                </Segment>
-
-              </Grid.Column>
-              <Grid.Column>
-
-                <Segment >
-
-
-                  <h1>CATEGORY</h1>
-
-
-                  {
-                    posts.length >= 0
-                      ? //in { } is logic
-                      posts.map(post =>
-                        post.categoryname ?
-                          (<div><Input type='text' value={post.categoryname} onChange={this.onTextChange} /> <Input type='text' value={post.value} onChange={this.onTextChange} /> <Button icon='pencil' /> <Button icon='cancel' /></div>
-
-                          )
-                          :
-                          null
-                      )
-                      :
-                      null
-                  }
-                  <form onSubmit={this.onSubmit}>
-                    <Input type='text' name='category' value={this.state.category} onChange={this.onTextChange} /> <Input type='text' name='value' value={this.state.value} onChange={this.onTextChange} /> <Button type='submit'>Add</Button>
-                  </form>
-                </Segment>
-
-              </Grid.Column>
-
-            </Grid.Row>
-          </Grid >
-        </Grid >
-
-
-
-      </div >
-
-
+        </Segment.Group>
+      </div>
 
 
     );
   }
 }
 
-export default Admin;
+export default EditProfile;
