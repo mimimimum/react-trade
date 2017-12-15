@@ -2,7 +2,7 @@ import React from 'react';
 import { login } from '../../api'
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
-import {Form,Button} from 'semantic-ui-react'
+import { Form, Button, Grid, Label, Input, Segment } from 'semantic-ui-react'
 
 class Login extends React.Component {
   state = { // set state can use in class component only
@@ -31,22 +31,38 @@ class Login extends React.Component {
   }
 
   render() {
-    return  ( <div>
-      <Header/>
-          <Form className='ui large form' onSubmit={this.onSubmit}>
+    return (
+<div>
+<Header />
+<Grid color='black'>
+<Grid columns={3}>
+  <Grid.Row>
+    <Grid.Column>
+    </Grid.Column>
+    <Grid.Column>
+      <Segment padded>
 
+        <Form className='ui large form' onSubmit={this.onSubmit}>
           <Form.Field>
-      <label>Last Name</label>
-      <Form.Input  type='text'  name='username' placeholder='Username'  value={this.state.username} onChange={this.onTextChange} />
+            <label>USERNAME</label>
+            <Form.Input type='text' name='username' placeholder='Username' value={this.state.username} onChange={this.onTextChange} required />
 
-    </Form.Field>
-
-
-              <Form.Input type='password' name='password' placeholder='Password' value={this.state.password} onChange={this.onTextChange} />
+            <label>PASSWORD</label>
+            <Form.Input type='password' name='password' placeholder='Password' value={this.state.password} onChange={this.onTextChange} required />
             <Button type='submit' className='ui teal fluid button'>Log in</Button>
+          </Form.Field>
+        </Form>
+      </Segment>
+    </Grid.Column>
+    <Grid.Column>
+    </Grid.Column>
+  </Grid.Row>
+</Grid>
+</Grid>
+</div>
 
-          </Form>
- </div>
+
+
     );
   }
 }

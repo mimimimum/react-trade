@@ -28,11 +28,11 @@ const Routes = () => {
   <Redirect to="/login" />
 ) : (
   <Switch>
-    <Route exact path='/item' component={Item} />
+    <Route exact path='/item/:id' component={Item} />
     <Route exact path='/upload' component={Additem} />
     <Route exact path='/post' component={Post} />
     <Route exact path="/profile" component={Profile} />
-    <Route exact path="/editprofile" component={EditProfile} />
+    <Route exact path="/setting/:id" component={EditProfile} />
   </Switch>
 )}
 </Switch>

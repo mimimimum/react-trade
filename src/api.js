@@ -32,24 +32,34 @@ export const register = (firstname ,lastname ,username,password,email,tel) => {
         .catch(error => error.response)
 }
 
-export const editprofile = (firstname ,lastname ,username,password,email,tel) => {
+export const editprofile = (id,address,email,phone) => {
     const data = {
-        firstname:firstname,
-        lastname:lastname,
-        username: username,
-        password: password,
+        address: address,
         email:email,
-        tel:tel
+        phone:phone
     }
 
-    return axiosInstance.put('api/user/editprofile', data)
+    return axiosInstance.put('api/user/editprofile/'+id, data)
         .then(data => data)
         .catch(error => error.response)
 }
 
-export const postItem = (name,description,lookfor,send,category) => {
+export const reply = (id,reply,img,name,description) => {
+    const data = {
+        reply: reply,
+        img:img,
+        name:name,
+description:description
+    }
+
+    return axiosInstance.put('api/item/reply/'+id, data)
+        .then(data => data)
+        .catch(error => error.response)
+}
+
+export const postItem = (name,description,lookfor,send,category,img) => {
     const item = {
-    itemimage:'abc.jpg',
+    itemimage:img,
     itemname:name,
      description:description,
      lookfor:lookfor,
@@ -65,6 +75,12 @@ export const postItem = (name,description,lookfor,send,category) => {
 
 export const getAllItem = () => {
     return axiosInstance.get('/api/item/all/')
+        .then(response => response.data)
+        .catch(error => { throw (error.response) })
+}
+
+export const getOneItem = (id) => {
+    return axiosInstance.get('/api/item/'+id)
         .then(response => response.data)
         .catch(error => { throw (error.response) })
 }

@@ -3,9 +3,9 @@ import './Editprofile.css';
 import Header from '../Header/Header';
 import CardExampleGroups from './History.js';
 import { editprofile, getUser } from '../../api'
-import { Segment } from 'semantic-ui-react'
+import { Segment, Input, Button, Label, Form } from 'semantic-ui-react'
 
-class Profile extends React.Component {
+class EditProfile extends React.Component {
 
   state = { // set state can use in class component only
     id:'',
@@ -15,9 +15,9 @@ class Profile extends React.Component {
     lastname: '',
     email: '',
     address: '',
-    tel: '',
+    phone: '',
     allUsers: [],
-    id: "",
+    id: this.props.match.params.id,
     defaultDepartment: 0
   }
 
@@ -31,7 +31,7 @@ class Profile extends React.Component {
 
   onSubmit = event => {
     event.preventDefault() // no refresh
-    editprofile(this.state.firstname, this.state.lastname, this.state.username, this.state.password, this.state.email, this.state.tel)
+    editprofile(this.state.id,this.state.address,this.state.email, this.state.phone)
       .then(data => {
         if (data.status === 200) {
           window.location.reload();
@@ -57,55 +57,59 @@ class Profile extends React.Component {
     return (
       <div >
         < Header />
-        <div class="content">
-          <div class="ui horizontal segments">
+        <Segment.Group horizontal>
+        {
+        posts.length >= 0
+        ? //in { } is logic
+          posts.map(post =>
+            post.username == localStorage.getItem('username') ?
+            (
+
             <Segment>
               <h1>EDIT YOUR PROFILE</h1>
-              <form class="ui form" onSubmit={this.onSubmit}>
+              <Form class="ui form" onSubmit={this.onSubmit}>
                 <div class="field">
-                  <label>PASSWORD</label>
-                  <input type="text" name="password" placeholder="PASSWORD" value={this.state.password} onChange={this.onTextChange} />
+                  <Label>ADDRESS</Label>
+                  <Input type="text" name="address" placeholder={post.address} value={this.state.address} onChange={this.onTextChange} required/>
                 </div>
                 <div class="field">
-                  <label>FIRST NAME</label>
-                  <input type="text" name="firstname" placeholder="FIRST NAME" value={this.state.firstname} onChange={this.onTextChange} />
+                  <Label>E-MAIL</Label>
+                  <Input type="text" name="email" placeholder={post.email} value={this.state.email} onChange={this.onTextChange} required/>
                 </div>
                 <div class="field">
-                  <label>LAST NAME</label>
-                  <input type="text" name="lastname" placeholder="LAST NAME" value={this.state.lastname} onChange={this.onTextChange} />
+                  <Label>MOBILE</Label>
+                  <Input type="text" name="phone" placeholder={post.phone} value={this.state.phone} onChange={this.onTextChange} required/>
                 </div>
-                <div class="field">
-                  <label>ADDRESS</label>
-                  <input type="text" name="address" placeholder="ADDRESS " value={this.state.address} onChange={this.onTextChange} />
-                </div>
-                <div class="field">
-                  <label>E-MAIL</label>
-                  <input type="text" name="email" placeholder="E-MAIL" value={this.state.email} onChange={this.onTextChange} />
-                </div>
-                <div class="field">
-                  <label>MOBILE</label>
-                  <input type="text" name="tel" placeholder="PHONE" value={this.state.tel} onChange={this.onTextChange} />
-                </div>
-                <button class="ui teal button" type="submit">OK</button>
-              </form>
+                <br />
+                <br />
+                <Button class="ui teal button" type="submit">OK</Button>
+              </Form>
               <br />
 
             </Segment>
-            <Segment>
 
-              <h1>HISTORY</h1>
-              {posts.length >= 0 ? //in { } is logic
-                posts.map(post =>
-                  <div className='ui segment'>
-                    <p>Published by: {post.username}</p>
-                  </div>
-                )
-                : null
-              }
-            </Segment>
-          </div>
-        </div>
 
+)
+            :
+            null
+          )
+        :
+        null
+      }
+      <Segment>
+        <h1>HISTORY</h1>
+        {posts.length >= 0 ? //in { } is logic
+          posts.map(post =>
+            <div className='ui segment'>
+              <p>Published by: {post.username}</p>
+            </div>
+          )
+          : null
+        }
+
+      </Segment>
+
+      </Segment.Group>
       </div>
 
 
@@ -113,4 +117,4 @@ class Profile extends React.Component {
   }
 }
 
-export default Profile;
+export default EditProfile;

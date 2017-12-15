@@ -1,17 +1,20 @@
 import React from 'react';
 import Header from '../Header/Header';
-import {getAllItem} from '../../api'
-import { Grid, Icon ,Label,Menu,Segment} from 'semantic-ui-react'
+import {getAllItem,getCategory} from '../../api'
+import { Grid, Icon ,Label,Menu,Segment,Button,Input,Image } from 'semantic-ui-react'
 
 class Home extends React.Component {
   state = {
     activeItem: 'all',
+    allCategory: [],
     allPosts: [],
     cate: "all"
    }
 
+
+handleItemClick = (e, { value }) => this.setState({ activeItem: value ,cate : value })
     handleChange = (value) => {
-      this.setState({ cate : value ,activeItem: value})
+      this.setState({ activeItem: value})
     }
 
     getItems = () => {
@@ -19,50 +22,68 @@ class Home extends React.Component {
         .then(data => this.setState({ allPosts: data }))
         .catch(err => console.error('Something went wrong.'))
     }
+    getCategories = () => {
+      getCategory()
+        .then(data => this.setState({ allCategory: data }))
+        .catch(err => console.error('Something went wrong.'))
+    }
 
     componentDidMount() { // when render finish call is func
       this.getItems()
+      this.getCategories()
     }
 
   render() {
     const { activeItem } = this.state
     const posts = this.state.allPosts
+    const cates = this.state.allCategory
     return (
       <div>
         < Header />
 
-        <Grid>
-        <Grid.Column width={4}>
+        <Grid >
+        <Grid.Column width={2}>
           <Menu fluid vertical tabular>
-            <Menu.Item  active={activeItem === 'all'} name="all" class="cate" value="all" onClick={(e) => this.handleChange('all')} />
-            <Menu.Item active={activeItem === 'shirt'} name="shirt" class="cate" value="shirt" onClick={(e) => this.handleChange('shirt')}/>
-            <Menu.Item  active={activeItem === 'IT'} name="IT" class="cate" value="IT" onClick={(e) => this.handleChange('IT')} />
-            <Menu.Item  active={activeItem === 'on'} name="on" class="cate" value="on" onClick={(e) => this.handleChange('on')} />
+          {console.log(cates),
+            cates.length >= 0
+            ? //in { } is logic
+              cates.map(cate =>
+                cate.categoryname ?
+                (
+          <Menu.Item active={activeItem === cate.value} name={cate.categoryname} class="cate" value={cate.value} onClick={this.handleItemClick} />
+               )
+                :
+                null
+              )
+            :
+            null
+          }
+
           </Menu>
         </Grid.Column>
 
         <Grid.Column stretched width={12}>
           <Segment>
+<Grid>
           {
           posts.length >= 0
           ? //in { } is logic
             posts.map(post =>
               post.category==this.state.cate || this.state.cate == "all"
               ?
-              (<div className='ui segment'>
-                <p>Published by: {post.itemname}</p>
-                <p>description: {post.description}</p>
-                <p>look: {post.lookfor}</p>
-                <p>send: {post.transfer}</p>
-                <p>category: {post.category}</p>
-              </div>)
+              (<Grid.Column width={4}><a href={'item/'+post._id}><Image
+                      fluid
+                      label={{ as: 'a', color: 'black', content: post.description, icon: 'hotel', ribbon: true }}
+                      src={post.itemimage} size='medium'
+                    /></a></Grid.Column>
+              )
               :
               null
             )
           :
           null
         }
-          </Segment>
+          </Grid></Segment>
         </Grid.Column>
       </Grid>
 
