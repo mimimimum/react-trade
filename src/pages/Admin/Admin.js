@@ -32,7 +32,6 @@ allUsers:[]
       })
   }
   onClick =  (id,status) => {
-    event.preventDefault() // no refresh
     editstatus(id, status)
       .then(data => {
         if (data.status === 200) {

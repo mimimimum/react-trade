@@ -46,6 +46,20 @@ export const editprofile = (id,address,email,phone) => {
         .catch(error => error.response)
 }
 
+export const reply = (id,reply,img,name,description) => {
+    const data = {
+        reply: reply,
+        img:img,
+        name:name,
+description:description
+    }
+
+    return axiosInstance.put('api/item/reply/'+id, data)
+        .then(data => data)
+        .catch(error => error.response)
+}
+
+
 export const editstatus = (id,status) => {
     const data = {
         status: status
@@ -55,10 +69,6 @@ export const editstatus = (id,status) => {
         .then(data => data)
         .catch(error => error.response)
 }
-
-
-
-
 
 export const postItem = (name,description,lookfor,send,category,img) => {
     const item = {
